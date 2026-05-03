@@ -5,18 +5,16 @@ struct HeroListView: View {
         NavigationStack {
             ZStack {
                 Color(hex: "0D0B1A").ignoresSafeArea()
-                ScrollView {
-                    LazyVStack(spacing: 10) {
-                        ForEach(heroList) { hero in
-                            NavigationLink(destination: HeroDetailView(hero: hero)) {
-                                HeroRowView(hero: hero)
-                            }
-                            .buttonStyle(.plain)
-                        }
+                List(heroList) { hero in
+                    NavigationLink(destination: HeroDetailView(hero: hero)) {
+                        HeroRowView(hero: hero)
                     }
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 12)
+                    .listRowBackground(Color(hex: "0D0B1A"))
+                    .listRowSeparatorTint(Color(hex: "C9A265").opacity(0.2))
+                    .listRowInsets(EdgeInsets(top: 5, leading: 16, bottom: 5, trailing: 16))
                 }
+                .listStyle(.plain)
+                .scrollContentBackground(.hidden)
             }
             .navigationTitle("黃金裔英雄殿")
             .navigationBarTitleDisplayMode(.large)

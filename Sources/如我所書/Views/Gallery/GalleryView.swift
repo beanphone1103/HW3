@@ -54,14 +54,17 @@ struct GalleryView: View {
     }
 
     private var regionScroll: some View {
-        ScrollView {
-            LazyVStack(spacing: 12) {
-                ForEach(filtered) { region in
+        TabView {
+            ForEach(filtered) { region in
+                VStack {
                     RegionCardView(region: region)
+                        .padding(.horizontal, 16)
+                        .padding(.top, 16)
+                    Spacer()
                 }
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 16)
         }
+        .tabViewStyle(.page)
+        .indexViewStyle(.page(backgroundDisplayMode: .always))
     }
 }
